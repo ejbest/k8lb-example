@@ -1,6 +1,8 @@
 #### EJ Best: Submission of Kuberbetes Load Balancer Project 
 
-Submission of Project includes the following status.  Was able to get this working and hope it meets all requirements.  The model from the assignment chosen is with Kubernetes building out a Load Balanced Nginx server containers up and down in High Availability. 
+The following model builds High Availability, Load Balancing Nginx servers in Kubernetes containers in response to the interview assignment.
+
+As stated in the docuemnt there is freedom and should feel encouraged "to add any other bits and pieces you'd like to make it fancier or otherwise more fun".  As a result built out this with Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS.
 
 Each Nginx instance does operate its own container building on the alpine:3.10 image from the public docker repository.  Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can do that is in the instructions below.
 
@@ -22,7 +24,8 @@ Each Nginx instance does operate its own container building on the alpine:3.10 i
     cd mytestfolder
 </pre>
 - script was tested on Linux and Mac
-- create a folder of your choice for the test
+- create a folder of your choice for the t
+est
 2. Clone the files from git
 <pre>
     git clone git@github.com:ejbest/k8lb-example.git<br>
