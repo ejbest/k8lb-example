@@ -2,13 +2,7 @@
 
 Submission of Project includes the following status.  Was able to get this working to an 80% to 90% of requirements.  The model from the assignment chosen is that Kubernetes builds out a Nginx container to be Load Balanced scale Nginx containers up and down in High Availability. 
 
-Each Nginx instance does operate its own container building on the alpine:3.10 image from the public docker repository.   Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can do that.
-<pre>
-kubectl get pods -l app=alpine -n testnamespace2 \
--o go-template='{{range .items}}{{.status.podIP}}{{"\n"}}{{end}}' \
- > static-file.txt && cat static-file.txt
-</pre>
-
+Each Nginx instance does operate its own container building on the alpine:3.10 image from the public docker repository.   Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can do that is in the instructions below.
 
 #### Commnands to run and test
 
@@ -85,6 +79,12 @@ You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbe
 kubectl apply -f alpine-deployment.yaml
 </pre>
 
+10. Get a list of IPs in a static text file of Nginx nodes.
+<pre>
+kubectl get pods -l app=alpine -n testnamespace2 \
+-o go-template='{{range .items}}{{.status.podIP}}{{"\n"}}{{end}}' \
+ > static-file.txt && cat static-file.txt
+</pre>
 
 7. Bonus Items
 ##### Bonus #1 How to configure to maximize availability.
