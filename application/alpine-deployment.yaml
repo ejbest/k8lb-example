@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine
+  labels:
+    app: alpine
+spec:
+  selector:
+    matchLabels:
+      app: alpine
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: alpine
+        io.kompose.service: alpine
+    spec:
+      containers:
+      - name: alpine
+        image: ejbest/alpine
+        lifecycle:
+          postStart:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "hostname -i > /usr/share/nginx/html/index.html"
+        ports:
+        - containerPort: 80
+       # command: ["top"]
+       
