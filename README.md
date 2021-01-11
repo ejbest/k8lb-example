@@ -42,32 +42,33 @@ Each Nginx instance does operate its own container building on the alpine:3.10 i
 
 5. Go to the Applcation Folder - start apps
 <pre>
-cd ..
-cd application
-bash start-k8-app.sh 
+    cd ..
+    cd application
+    bash start-k8-app.sh 
 </pre>
 
 6. It will take time to sync with Kubernets / EKS / Nginx 
 <pre>
-kubectl get svc -n testnamespace2
+    kubectl get svc -n testnamespace2
 </pre>
-7. An dns name like below in the output, this will be the load balancer address
+7. An dns name like below in the output, this will be the load balancer address.  This dns name is key.
+<pre>
     ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
-
+</pre>
 8. Perform a command "nslookup" passing this dns name and ensure that it only returning a positive non-failing return <br>
     nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
 
-A good output would look like below 
+    A good output would look like below 
 <pre>
-% nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
-Server:		209.18.47.61
-Address:	209.18.47.61#53
-Non-authoritative answer:
-Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
-Address: 54.210.181.93
-Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
-Address: 3.229.57.142
-%
+    % nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
+    Server:		209.18.47.61
+    Address:	209.18.47.61#53
+    Non-authoritative answer:
+    Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
+    Address: 54.210.181.93
+    Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
+    Address: 3.229.57.142
+    %
 </pre>
 
 9. Two meathods to scale up and down
@@ -76,14 +77,14 @@ kubectl scale deployment.apps/alpine --replicas=6
 </pre>
 You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbers.  Invoke by 
 <pre>
-kubectl apply -f alpine-deployment.yaml
+    kubectl apply -f alpine-deployment.yaml
 </pre>
 
 10. Get a list of IPs in a static text file of Nginx nodes.
 <pre>
-kubectl get pods -l app=alpine -n testnamespace2 \
--o go-template='{{range .items}}{{.status.podIP}}{{"\n"}}{{end}}' \
- > static-file.txt && cat static-file.txt
+    kubectl get pods -l app=alpine -n testnamespace2 \
+    -o go-template='{{range .items}}{{.status.podIP}}{{"\n"}}{{end}}' \
+    > static-file.txt && cat static-file.txt
 </pre>
 
 7. Bonus Items
