@@ -1,4 +1,4 @@
-# EJ Best: Submission of Kuberbetes Load Balancer Project 
+#### EJ Best: Submission of Kuberbetes Load Balancer Project 
 
 Submission of Project includes the following status.  Was able to get this working to an 80% to 90% of requirements.  The model from the assignment chosen is that Kubernetes builds out a Nginx container to be Load Balanced scale Nginx containers up and down in High Availability. 
 
