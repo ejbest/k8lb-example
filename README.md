@@ -87,7 +87,7 @@ You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbe
     > static-file.txt && cat static-file.txt
 </pre>
 -------------------------------------------------
-####Bonus Items
+#### Bonus Items
 ##### Bonus #1 How to configure to maximize availability.
 This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with the below command.
 
