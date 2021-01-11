@@ -9,11 +9,11 @@ Each Nginx instance does operate its own container building on the alpine:3.10 i
 **Base Requirements**
  <br>
 -  Linux or Mac workstation or Linux server
--  AWS Command Line and Account
+-  AWS Command Line and Account and authenticated<br>
     https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html<br>
--  Terraform v0.14.3
+-  Terraform v0.14.3<br>
     https://www.terraform.io/downloads.html
--  Git
+-  Git Client<br>
     https://git-scm.com
 
 **Steps** 
@@ -71,7 +71,7 @@ Each Nginx instance does operate its own container building on the alpine:3.10 i
     %
 </pre>
 
-9. Two meathods to scale up and down
+9. Two methods to scale up and down
 <pre>
 kubectl scale deployment.apps/alpine --replicas=6 
 </pre>
