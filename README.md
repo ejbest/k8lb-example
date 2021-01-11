@@ -1,161 +1,114 @@
-#Sample Load Balancing 
-## aws client must be configured
+# EJ Best: Submission of Kuberbetes Load Balancer Project 
+
+Submission of Project includes the following status.  Was able to get this working to an 80% to 90% of requirements.  The model from the assignment chosen is that Kubernetes builds out a Nginx container to be Load Balanced scale Nginx containers up and down in High Availability. 
+
+Each Nginx instance does operate its own container building on the alpine:3.10 image from the public docker repository.   Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can do that.
 <pre>
-git clone 
-cd k8lb
-cd terraform 
-terraform init
-terraform plan
-terrraform apply --auto-approve
+kubectl get pods -l app=alpine -n testnamespace2 \
+-o go-template='{{range .items}}{{.status.podIP}}{{"\n"}}{{end}}' \
+ > static-file.txt && cat static-file.txt
+</pre>
+
+
+#### Commnands to run and test
+
+**Base Requirements**
+ <br>
+-  Linux or Mac workstation or Linux server
+-  AWS Command Line and Account
+    https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html<br>
+-  Terraform v0.14.3
+    https://www.terraform.io/downloads.html
+-  Git
+    https://git-scm.com
+
+**Steps** 
+1. Go to a command line of your workstation<br>
+<pre>
+    cd mytestfolder
+</pre>
+- script was tested on Linux and Mac
+- create a folder of your choice for the test
+2. Clone the files from git
+<pre>
+    git clone git@github.com:ejbest/k8lb-example.git<br>
+</pre>
+3. Go to the folder that was just created
+<pre>
+    cd k8lb-example<br>
+</pre>
+
+4. CD to the Terraform Folder
+<pre>
+    cd terraform
+    terraform init
+    terraform plan
+    terraform apply
+</pre>
+
+5. Go to the Applcation Folder - start apps
+<pre>
 cd ..
-bash start-k8-apps.sh
-kubectl get pods
-nslookup <url for load balancer - when works put in browser>
+cd application
+bash start-k8-app.sh 
 </pre>
- 
-Next Steps
- 1. Security Groups
- 2. Shutdown Clean
- 3. Comments in Files
- 4. How to automate a Demo Showing (Quicktime?)
- 5. Document how to Build, Run and Test
 
-Bonus 
- 1. How would this be configured to maximize availability. (documentation only)
- 2. What loads would this spinup be able to handle. (documentation only)
- 3. How would logging, security be applied. (documentation only)
-
-
-
-
-
-
-
-
-
-
-Minikube 
+6. It will take time to sync with Kubernets / EKS / Nginx 
 <pre>
-minikube delete --all --purge
-minikube start --driver=virtualbox
-minikube status
-kubectl get pods
-kubectl get service
-minikube addons enable ingress
-
-aws sts get-caller-identityexit
-kubectl get svc,nodes,pods
-aws eks list-clusters
-
-
+kubectl get svc -n testnamespace2
 </pre>
-https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
-https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
+7. An dns name like below in the output, this will be the load balancer address
+    ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
 
- #### How to use :
- - To launch the APP, just open a terminal, go inside the unzipped folder, at the same level with docker-compose.yml, and execute : docker-compose up
- - This will spin up the dockerised architecture. After that, you need to open a browser and tape : http://localhost:8080
- - It will redirect 60% traffic to app1 and 40% traffic to app2.
- - To quit, you can just CTRL + C in the terminal and it will stop the application and destroy the created containers.
+8. Perform a command "nslookup" passing this dns name and ensure that it only returning a positive non-failing return <br>
+    nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
+
+A good output would look like below 
+<pre>
+% nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
+Server:		209.18.47.61
+Address:	209.18.47.61#53
+Non-authoritative answer:
+Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
+Address: 54.210.181.93
+Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
+Address: 3.229.57.142
+%
+</pre>
+
+9. Two meathods to scale up and down
+<pre>
+kubectl scale deployment.apps/alpine --replicas=6 
+</pre>
+You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbers.  Invoke by 
+<pre>
+kubectl apply -f alpine-deployment.yaml
+</pre>
 
 
+7. Bonus Items
+##### Bonus #1 How to configure to maximize availability.
+This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with the below command.
 
+##### Bonus #2 What loads would this spinup be able at loads would this spinup be able to handle. 
+This would primarily be a webserver but could be privately configured and non-web facing for application or other related processing.  There could be other solutions for listening and processing from API or SAAS solutions.
 
-### Make sure app1 and app2 upload to dockerhub.com because kubernetes will pull image from dockerhub.
-#### Login to your dockerhub
+##### Bonus #3  How would logging, security be applied. 
+There is a bunch of security concerns that we should apply.
+1.	Consider using a later version of Alpine.  There are expected security patches for the OS; as well as, related pipeline tools including terraform and Ngninx that could have updated versions due to security vulnerablities.
+2.	Set the kubelet with the --anonymous-auth=false flag.
+3.	Implement use of certificate bundles and other key flags.
+4.	Use of https 443.
+5.	Scanning of image all the way to “DAST” Dynamic application scanning.
+6.	Ethical Hacking of the open ports and other Penetration Testing.
+7.  Use any Cyber Scanning tools the company has and consider best available market scanning tools including StackRox or Aqua.
+8.  Consider Cybernews Sources and other related avenues.
 
-```
-$ docker login
-Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
-Username: dwinurhadi17
-Password:
-WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
-Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-Login Succeeded
-$
-```
+Please let me know any questions; if any details are missing or if anything was interpreted incorrectly.
 
-#### Build app1 and app2
-From your root directory
-
-App1
-```
-$ cd app1/
-$ ls
-app1.py  Dockerfile  requirements.txt
-$ docker build . -t dwinurhadi17/app1 <dwi nurhadi is my dockerhub login>
-$ docker push dwinurhadi17/app1
-The push refers to repository [docker.io/dwinurhadi17/app1]
-f170c705b2cd: Pushed
-242394429f55: Pushed
-15db690b672a: Pushed
-dcb6780f323d: Mounted from library/python
-0c8f6111ef94: Mounted from library/python
-5aeaca4916d7: Mounted from library/python
-59840d625c92: Mounted from library/python
-da87e334550a: Mounted from library/python
-c5f4367d4a59: Mounted from library/python
-ceecb62b2fcc: Mounted from library/python
-193bc1d68b80: Mounted from library/python
-f0e10b20de19: Mounted from library/python
-latest: digest: sha256:c8313494555d16bc9b9f736cbee2ca69ec3e9d02d81847aec52e6ce3c7f52fab size: 2842
-$ 
-```
-
-App2
-
-```
-$ cd app2
-$ ls
-app1.py  Dockerfile  requirements.txt
-$ docker build . -t dwinurhadi17/app2 <dwi nurhadi is my dockerhub login>
-$ docker push dwinurhadi17/app2
-The push refers to repository [docker.io/dwinurhadi17/app1]
-f170c705b2cd: Pushed
-242394429f55: Pushed
-15db690b672a: Pushed
-dcb6780f323d: Mounted from library/python
-0c8f6111ef94: Mounted from library/python
-5aeaca4916d7: Mounted from library/python
-59840d625c92: Mounted from library/python
-da87e334550a: Mounted from library/python
-c5f4367d4a59: Mounted from library/python
-ceecb62b2fcc: Mounted from library/python
-193bc1d68b80: Mounted from library/python
-f0e10b20de19: Mounted from library/python
-latest: digest: sha256:c8313494555d16bc9b9f736cbee2ca69ec3e9d02d81847aec52e6ce3c7f52fab size: 2842
-$
-```
-### After image is push to dockerhub
-
-We apply kubernetes file
-
-App1
-
-```
-$ kubectl apply -f app1-deployment.yaml
-deployment.apps/app1 created
-$ kubectl get pods
-NAME                     READY   STATUS    RESTARTS   AGE
-app1-564d657f7d-zgjnb    1/1     Running   0          5s
-nginx-78d84d56fd-5vkht   1/1     Running   0          8m34s
-```
-
-Cek pod and service
-
-```
-$ kubectl get pod
-NAME                     READY   STATUS    RESTARTS   AGE
-app1-564d657f7d-zgjnb    1/1     Running   0          28m
-app2-7ff5c7f7bc-dm94r    1/1     Running   0          7s
-nginx-78d84d56fd-5vkht   1/1     Running   0          36m
-$ kubectl get svc
-NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
-app1         ClusterIP      10.100.227.33    <none>        5001/TCP       37m
-app2         ClusterIP      10.104.70.105    <none>        5002/TCP       3m23s
-kubernetes   ClusterIP      10.96.0.1        <none>        443/TCP        37m
-lb-nginx     LoadBalancer   10.106.126.244   <pending>     80:32317/TCP   24m
-nginx        ClusterIP      10.103.112.46    <none>        8080/TCP       36m
-$ 
-```
+| Contact  | EJ Best
+| ------------ | -------------------------------------
+| Skype | erich.ej.best
+| Email | erich.ej.best@gmail.com
+| Phone | 201-218-9860
+| LinkedIn | https://www.linkedin.com/in/ejbest
