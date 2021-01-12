@@ -58,7 +58,7 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 <pre>
     nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
 </pre>
-##### A good output would look like below 
+#####       A good output would look like below 
 <pre>
     % nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
     Server:     209.18.47.61
