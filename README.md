@@ -4,7 +4,7 @@ The following model builds High Availability, Load Balancing Nginx servers in Ku
 
 Each Nginx instance operates its own container building on the alpine:3.10 image from the public docker repository.  Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can make a static file for addition to a web page or report or console has instructions below.
 
-In an effort to differentiate my approach and showcase how I become a valuable member of the team; the model uses Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS.  The assignment encourages this type of customization so I hoped to impress some of my experience on you.
+In an effort to differentiate my approach and showcase how I become a valuable member of the team; the model uses Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS.  The assignment encourages this type of customization so I hope to impress some of my experience on you.
 
 #### Commnands to run and test
 
@@ -19,7 +19,7 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     https://git-scm.com
 
 **Steps** 
-1. Go to a command line of your workstation<br>
+1. Go to a command line of your workstation
 - script was tested on Linux and Mac
 - create and go to a folder of your choice for the test
 <pre>
@@ -34,7 +34,7 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 <pre>
     cd k8lb-example
 </pre>
-4. CD to the Terraform Folder and run the following commands
+4. Change Directory to the Terraform Folder and run the following commands
 <pre>
     cd terraform
     terraform init
@@ -58,7 +58,7 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     # this will get the output of the environment
     # you will need to get the DNS name near the Load Balancer
 </pre>
-7. A DNS name like below in the output, this will be the load balancer address.  This dns name is key.
+7. A DNS name like below in the output, this will be the load balancer address.  This DNS name is key.
 <pre>
     ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
 </pre>
@@ -81,7 +81,7 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     Use the DNS name and copy/paste into a browser such a Chrome or Firefox.
     An IP address of the load balancer that is behind the browser.
     You can start browsers and see multiple browsers and see different Ip addresses used.
-    The Ip address that you see in the browser is the IP of the Pod that Nginx is serving from.
+    The IP address that you see in the browser is the IP of the Pod that Nginx is serving from.
 
 9. Two methods to scale up and down<br>
 Command line 
