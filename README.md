@@ -55,8 +55,9 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
 </pre>
 8. Perform a command "nslookup" passing the dns name and ensure that it is only returning a positive non-failing return <br>
+<pre>
     nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
-
+</pre>
     A good output would look like below 
 <pre>
     % nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
