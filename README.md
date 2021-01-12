@@ -119,8 +119,8 @@ The above spinup in the example would increase the load as much as 10 times.  Th
 6.  Scanning of image all the way to “DAST” Dynamic application scanning; tools such as Tenable Nessus, CrowdStrick, Kenna, Aqua, StackRox or other related scanning tools.
 7.  Consider Cybernews Sources and other related avenues, for up to date Vulnerability News.
 8.  Have a solution for organized logging by some in-house modular scripts or enterprise solution with Splunk, DataDog or other related software product.
-9. Have monitoring setup via Prometheus, Grafana, Rancher, Nagios, Pager Duty or other similar applications.
-10. The whole of the deployment operation should be Orchestrated in a Jenkins or otherwise Orchestration solution, single execution and logged with "error-checked" deployments.
+9. Have monitoring setup via Prometheus, Grafana, Rancher, Nagios, Pager Duty or other similar Monitoring applications.
+10. The whole of the deployment operation should be Orchestrated in a Jenkins or similar Orchestration solutions, single execution and logged with "error-checked" deployments.
 
 Please let me know any questions; if any details are missing or if anything was interpreted incorrectly.
 
