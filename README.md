@@ -71,11 +71,11 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 </pre>
 9. Two methods to scale up and down
 <pre>
-    kubectl scale deployment.apps/alpine --replicas=6 
+    kubectl scale deployment.apps/alpine --replicas=6 -n tempnamespace2
 </pre>
 You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbers.  Invoke by 
 <pre>
-    kubectl apply -f alpine-deployment.yaml
+    kubectl apply -f alpine-deployment.yaml -n tempnamespace2
 </pre>
 10. Get a list of IPs in a static text file of Nginx nodes.  This list could be brought into a addition to a web page or report or console for diagnostics or otherwise. 
 <pre>
@@ -87,7 +87,7 @@ You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbe
 #### Bonus Items
 ##### Bonus #1 How to configure to maximize availability?
 This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with a similar below command. <pre>
-kubectl autoscale deployment alpine-deployment --cpu-percent=50 --min=1 --max=10
+kubectl autoscale deployment alpine-deployment --cpu-percent=50 --min=1 --max=10 -n tempnamespace2
 </pre>
 ##### Bonus #2 What loads would this spinup be able at loads would this spinup be able to handle?
 This would primarily be a webserver but could be privately configured and non-web facing for application or other related processing.  There could be other solutions for listening and processing from API or SAAS solutions.
