@@ -4,7 +4,7 @@ The following model builds High Availability, Load Balancing Nginx servers in Ku
 
 Each Nginx instance operates its own container building on the alpine:3.10 image from the public docker repository.  Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can make a static file for addition to a web page or report or console has instructions below.
 
-In an effort to differentiate my approach and showcase how I become a valuable member of the team; the model uses Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS. The assignment encourages this type of customization so I hoped to impress some of my experience on you.
+In an effort to differentiate my approach and showcase how I become a valuable member of the team; the model uses Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS.  The assignment encourages this type of customization so I hoped to impress some of my experience on you.
 
 #### Commnands to run and test
 
@@ -20,12 +20,11 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 
 **Steps** 
 1. Go to a command line of your workstation<br>
+- script was tested on Linux and Mac
+- create a folder of your choice for the test
 <pre>
     cd mytestfolder
 </pre>
-- script was tested on Linux and Mac
-- create a folder of your choice for the t
-est
 2. Clone the files from git
 <pre>
     git clone git@github.com:ejbest/k8lb-example.git<br>
