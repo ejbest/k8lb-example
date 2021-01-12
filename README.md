@@ -86,7 +86,7 @@ You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbe
 -------------------------------------------------
 #### Bonus Items
 ##### Bonus #1 How to configure to maximize availability?
-This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with the below command. <pre>
+This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with a similar below command. <pre>
 kubectl autoscale deployment alpine-deployment --cpu-percent=50 --min=1 --max=10
 </pre>
 ##### Bonus #2 What loads would this spinup be able at loads would this spinup be able to handle?
