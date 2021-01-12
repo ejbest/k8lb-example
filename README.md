@@ -50,11 +50,11 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 <pre>
     kubectl get svc -n testnamespace2
 </pre>
-7. An dns name like below in the output, this will be the load balancer address.  This dns name is key.
+7. A dns name like below in the output, this will be the load balancer address.  This dns name is key.
 <pre>
     ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
 </pre>
-8. Perform a command "nslookup" passing this dns name and ensure that it only returning a positive non-failing return <br>
+8. Perform a command "nslookup" passing the dns name and ensure that it is only returning a positive non-failing return <br>
     nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
 
     A good output would look like below 
@@ -73,11 +73,11 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 <pre>
     kubectl scale deployment.apps/alpine --replicas=6 -n tempnamespace2
 </pre>
-You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbers.  Invoke by 
+You can also edit "replicas" in alpine-deployment.yaml choosing the desired numbers.  Invoke by 
 <pre>
     kubectl apply -f alpine-deployment.yaml -n tempnamespace2
 </pre>
-10. Get a list of IPs in a static text file of Nginx nodes.  This list could be brought into a addition to a web page or report or console for diagnostics or otherwise. 
+10. Get a list of IPs in a static text file of Nginx nodes.  This list could be brought into an addition to a web page or report or console for diagnostics or otherwise. 
 <pre>
     kubectl get pods -l app=alpine -n testnamespace2 \
     -o go-template='{{range .items}}{{.status.podIP}}{{"\n"}}{{end}}' \
@@ -89,7 +89,8 @@ You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbe
 This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with a similar below command. <pre>
 kubectl autoscale deployment alpine-deployment --cpu-percent=50 --min=1 --max=10 -n tempnamespace2
 </pre>
-##### Bonus #2 What loads would this spinup be able at loads would this spinup be able to handle?
+
+##### Bonus #2 What loads would this spinup be able to handle?
 This would primarily be a webserver but could be privately configured and non-web facing for application or other related processing.  There could be other solutions for listening and processing from API or SAAS solutions.
 
 ##### Bonus #3  How would logging, security be applied?
@@ -103,8 +104,8 @@ There is a bunch of security concerns that we should apply.
 7.  Use any Cyber Scanning tools the company has and consider best available market scanning tools including StackRox or Aqua.
 8.  Consider Cybernews Sources and other related avenues.
 9.  Have a solution for orgnized logging by some in house modular scripts or enterprise solution in Git.
-10. Have monitoring via Prometheus, Grafana, Rancher, Nagios, Pager Duty or other many choices.
-11. The whole of the operation should be Orchistrated in a Jenkins or otherwise Orchistration solution, single execution and logged error checked deploys.
+10. Have monitoring setup via Prometheus, Grafana, Rancher, Nagios, Pager Duty or other similar applications.
+11. The whole of the operation should be Orchestrated in a Jenkins or otherwise Orchestration solution, single execution and logged with "error-checked" deployments.
 
 Please let me know any questions; if any details are missing or if anything was interpreted incorrectly.
 
