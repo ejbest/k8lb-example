@@ -33,7 +33,6 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 <pre>
     cd k8lb-example<br>
 </pre>
-
 4. CD to the Terraform Folder
 <pre>
     cd terraform
@@ -41,14 +40,12 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     terraform plan
     terraform apply
 </pre>
-
 5. Go to the Applcation Folder - start apps
 <pre>
     cd ..
     cd application
     bash start-k8-app.sh 
 </pre>
-
 6. It will take time to sync with Kubernets / EKS / Nginx 
 <pre>
     kubectl get svc -n testnamespace2
@@ -72,7 +69,6 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     Address: 3.229.57.142
     %
 </pre>
-
 9. Two methods to scale up and down
 <pre>
     kubectl scale deployment.apps/alpine --replicas=6 
@@ -81,7 +77,6 @@ You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbe
 <pre>
     kubectl apply -f alpine-deployment.yaml
 </pre>
-
 10. Get a list of IPs in a static text file of Nginx nodes.  This list could be brought into a addition to a web page or report or console for diagnostics or otherwise. 
 <pre>
     kubectl get pods -l app=alpine -n testnamespace2 \
@@ -90,13 +85,14 @@ You can also edit "replicas" in alpine-deployment.yaml chosing the desired numbe
 </pre>
 -------------------------------------------------
 #### Bonus Items
-##### Bonus #1 How to configure to maximize availability.
-This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with the below command.
-
-##### Bonus #2 What loads would this spinup be able at loads would this spinup be able to handle. 
+##### Bonus #1 How to configure to maximize availability?
+This could be an on-prem or cloud environment; and could serve a series of Web Servers that would autoscale for performance.   For example; scaling based on 50% CPU load would be with the below command. <pre>
+kubectl autoscale deployment alpine-deployment --cpu-percent=50 --min=1 --max=10
+</pre>
+##### Bonus #2 What loads would this spinup be able at loads would this spinup be able to handle?
 This would primarily be a webserver but could be privately configured and non-web facing for application or other related processing.  There could be other solutions for listening and processing from API or SAAS solutions.
 
-##### Bonus #3  How would logging, security be applied. 
+##### Bonus #3  How would logging, security be applied?
 There is a bunch of security concerns that we should apply.
 1.	Consider using a later version of Alpine.  There are expected security patches for the OS; as well as, related pipeline tools including terraform and Ngninx that could have updated versions due to security vulnerablities.
 2.	Set the kubelet with the --anonymous-auth=false flag.
