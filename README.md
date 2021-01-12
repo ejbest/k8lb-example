@@ -4,13 +4,14 @@ The following model builds High Availability, Load Balancing Nginx servers in Ku
 
 Each Nginx instance operates its own container building on the alpine:3.10 image from the public docker repository.  Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can do that is in the instructions below.
 
-As stated in the docuemnt there is freedom and should feel encouraged "to add any other bits and pieces you'd like to make it fancier or otherwise more fun".  As a result built out this with Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS.
+In an effort to differentiate my approach and showcase how I become a valuable member of the team, the model is built using this project with Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS. The assignment encourages this type of customization so I hoped to impress some of my experience on you.
+
 
 #### Commnands to run and test
 
 **Base Requirements**
  <br>
--  Linux or Mac workstation or Linux server
+-  Mac workstation or Linux workstation/server to commandline control the testing exercise.
 -  AWS Command Line and Account and authenticated<br>
     https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html<br>
 -  Terraform v0.14.3<br>
