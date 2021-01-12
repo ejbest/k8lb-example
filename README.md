@@ -83,7 +83,7 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     You can start browsers and see multiple browsers and see different Ip addresses used.
     The Ip address that you see in the browser is the IP of the Pod that Nginx is serving from.
 
-9. Two methods to scale up and down
+9. Two methods to scale up and down<br>
 Command line 
 <pre>
     kubectl scale deployment.apps/alpine --replicas=6 -n tempnamespace2
