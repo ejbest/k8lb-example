@@ -2,9 +2,9 @@
 
 The following model builds High Availability, Load Balancing Nginx servers in Kubernetes containers in response to the interview assignment.
 
-As stated in the docuemnt there is freedom and should feel encouraged "to add any other bits and pieces you'd like to make it fancier or otherwise more fun".  As a result built out this with Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS.
+Each Nginx instance operates its own container building on the alpine:3.10 image from the public docker repository.  Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can do that is in the instructions below.
 
-Each Nginx instance does operate its own container building on the alpine:3.10 image from the public docker repository.  Each Nginx instance presents an IP address of the instance presenting.  Also, a static IP address list can be found and updated each time there is a scale up or down.  The command below can do that is in the instructions below.
+As stated in the docuemnt there is freedom and should feel encouraged "to add any other bits and pieces you'd like to make it fancier or otherwise more fun".  As a result built out this with Terraform to build Elastic Kubernetes Service (EKS) on Amazon AWS.
 
 #### Commnands to run and test
 
@@ -108,8 +108,8 @@ There is a bunch of security concerns that we should apply.
 7.  Use any Cyber Scanning tools the company has and consider best available market scanning tools including StackRox or Aqua.
 8.  Consider Cybernews Sources and other related avenues.
 9.  Have a solution for orgnized logging by some in house modular scripts or enterprise solution in Git.
-10. Have monitoring via Nagios or Pager Duty.
-11. The whole of the operation should be Orchistrated in a Jenkins solution, single execution and logged error checked deploys.
+10. Have monitoring via Prometheus, Grafana, Rancher, Nagios, Pager Duty or other many choices.
+11. The whole of the operation should be Orchistrated in a Jenkins or otherwise Orchistration solution, single execution and logged error checked deploys.
 
 Please let me know any questions; if any details are missing or if anything was interpreted incorrectly.
 
