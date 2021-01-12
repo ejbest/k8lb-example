@@ -60,13 +60,13 @@ In an effort to differentiate my approach and showcase how I become a valuable m
     A good output would look like below 
 <pre>
     % nslookup ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com 
-    Server:		209.18.47.61
-    Address:	209.18.47.61#53
+    Server:     209.18.47.61
+    Address:    209.18.47.61#53
     Non-authoritative answer:
     Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
-    Address: 54.210.181.93
+    Address:    54.210.181.93
     Name:	ad90a511ddb594a29beadcbe1efe67ad-594569592.us-east-1.elb.amazonaws.com
-    Address: 3.229.57.142
+    Address:    3.229.57.142
     %
 </pre>
 9. Two methods to scale up and down
