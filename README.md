@@ -27,11 +27,11 @@ In an effort to differentiate my approach and showcase how I become a valuable m
 </pre>
 2. Clone the files from git
 <pre>
-    git clone git@github.com:ejbest/k8lb-example.git<br>
+    git clone git@github.com:ejbest/k8lb-example.git
 </pre>
 3. Go to the folder that was just created
 <pre>
-    cd k8lb-example<br>
+    cd k8lb-example
 </pre>
 4. CD to the Terraform Folder
 <pre>
