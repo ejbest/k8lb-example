@@ -1,7 +1,7 @@
 #start-k8-app..sh
 set -x
 # reconfigure kubectl
-aws eks --region us-east-1 update-kubeconfig --name terraform-eks-demo 
+#aws eks --region us-east-1 update-kubeconfig --name terraform-eks-demo 
 #
 # Create namespace2
 kubectl create namespace testnamespace2
